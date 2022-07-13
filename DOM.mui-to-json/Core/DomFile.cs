@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using DOM.mui_to_json.ModOneToBuild;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -100,6 +101,16 @@ namespace DOM.mui_to_json
             var csv = CsvParser.parseCSV(new FileStream(path, FileMode.Open));
 
             this.setupLineObjects(csv);
+        }
+
+        public String getWritePath()
+        {
+            String name = Path.GetFileName(path);
+
+            string dir = ModBuilder.BUILD_PATH;
+            
+            return dir + name;
+
         }
 
         public void CreateJsonFile()
@@ -210,27 +221,27 @@ namespace DOM.mui_to_json
         {
             if (path.EndsWith("csv"))
             {
-                return path;
+                return getWritePath();
             }
 
-            return Path.ChangeExtension(path, ".mui");
+            return Path.ChangeExtension(getWritePath(), ".mui");
         }
 
         public string getMuiPath()
         {
-            return Path.ChangeExtension(path, ".mui");
+            return Path.ChangeExtension(getWritePath(), ".mui");
         }
         public string getCsvPath()
         {          
-            return Path.ChangeExtension(path, ".csv");
+            return Path.ChangeExtension(getWritePath(), ".csv");
         }
         public string getJsonPath()
         {
-            return Path.ChangeExtension(path, ".json");
+            return Path.ChangeExtension(getWritePath(), ".json");
         }
         public string getLuaPath()
         {
-            return Path.ChangeExtension(path, ".lua");
+            return Path.ChangeExtension(getWritePath(), ".lua");
         }
 
         private void setupLineObjects(List<List<string>> csv)

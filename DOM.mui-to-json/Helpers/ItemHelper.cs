@@ -147,11 +147,7 @@ namespace DOM.mui_to_json
             {
                 return false;
             }
-            if (line.dict["Item_lit_name"].ToLower().Contains("element"))
-            {
-                return false;
-            }
-            if (this.GetID().Contains("full"))
+            if (this.GetID().Contains("cross_full"))
             {
                 return false;
             }
@@ -164,6 +160,10 @@ namespace DOM.mui_to_json
         {
             line.dict["use_char_required"] = "LEVEL";
             line.dict["Use_char_value"] = lvl + "";
+        }
+        public void SetRequiremnt(int lvl)
+        {
+             line.dict["Use_char_value"] = lvl + "";
         }
 
         public void SetDropChance(float f)

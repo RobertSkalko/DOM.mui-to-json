@@ -21,6 +21,8 @@ namespace DOM.mui_to_json.ModOneToBuild
                 if (helper.getSubclass() == "isc_rune" || helper.getSubclass() == "isc_material")
                 {
                     helper.SetDropChance(0);
+                    helper.SetRequiremnt(999);
+
                 }
                 if (line.dict.ContainsKey("Item_durability"))
                 {
@@ -29,17 +31,11 @@ namespace DOM.mui_to_json.ModOneToBuild
                         line.dict["Item_durability"] = "-1";
                     }
                 }
-            }
-
-            file.CreateMuiOrCsvFile();
+            }            
 
         }
         public static void AddSetLabelsToItemNames(DomFile file, DomFile sets)
-        {
-
-           
-
-
+        {                       
 
             foreach (DomLine line in sets.lineObjects.ToList())
             {
@@ -59,19 +55,19 @@ namespace DOM.mui_to_json.ModOneToBuild
                         {
                             int index = file.indexOfWithId(itemID);
                             ItemHelper item = new ItemHelper(file.lineObjects[index]);
-                            item.SetName(item.GetName() + " [Set]");
+
+                            String SetNameAdd = "[Set]";
+
+                            if (!item.GetName().Contains(SetNameAdd)) {
+                                item.SetName(item.GetName() + " " + SetNameAdd);
+                            }
                         }
-                    }
-
-
-
-                    
+                    }                    
                     
                 }
 
             }
-
-            file.CreateMuiOrCsvFile();
+           
 
         }
 

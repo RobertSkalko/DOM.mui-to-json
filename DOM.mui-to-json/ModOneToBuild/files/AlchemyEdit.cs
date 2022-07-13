@@ -12,10 +12,11 @@ namespace DOM.mui_to_json.ModOneToBuild.files
         public static void Edit(DomFile file)
         {
 
+
             foreach (DomLine line in file.lineObjects.ToList())
             {
                 ItemHelper helper = new ItemHelper(line);
-
+                
                 String id = helper.GetID();
 
 

@@ -58,6 +58,7 @@
     <Compile Include="Helpers\RuneStatsHelper.cs" />
     <Compile Include="Helpers\RuneWordHelper.cs" />
     <Compile Include="ModOneToBuild\files\AlchemyEdit.cs" />
+    <Compile Include="ModOneToBuild\files\EnchantedItemRecipes.cs" />
     <Compile Include="ModOneToBuild\files\RuneWordsEdit.cs" />
     <Compile Include="ModOneToBuild\files\RuneWordsForLua.cs" />
     <Compile Include="ModOneToBuild\files\ItemsEdit.cs" />
