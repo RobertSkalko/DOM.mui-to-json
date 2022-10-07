@@ -1,10 +1,6 @@
 ﻿using DOM.mui_to_json.Helpers;
 using DOM.mui_to_json.Helpers.LvlRarityVariations;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DOM.mui_to_json
 {
@@ -13,7 +9,9 @@ namespace DOM.mui_to_json
 
         public String getDesc()
         {
+
             return this.line.dict["Item_lit_desc"];
+
         }
 
         public void setDesc(String desc)
@@ -155,7 +153,6 @@ namespace DOM.mui_to_json
             return this.IsUniqueItem() && line.get("RuneWord_socketed").Length > 2;
         }
 
-    
         public void SetLevelRequiremnt(int lvl)
         {
             line.dict["use_char_required"] = "LEVEL";
@@ -163,7 +160,7 @@ namespace DOM.mui_to_json
         }
         public void SetRequiremnt(int lvl)
         {
-             line.dict["Use_char_value"] = lvl + "";
+            line.dict["Use_char_value"] = lvl + "";
         }
 
         public void SetDropChance(float f)

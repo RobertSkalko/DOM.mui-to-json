@@ -17,7 +17,7 @@ namespace DOM.mui_to_json
         public static Encoding ENCODING = Encoding.Default;
 
         private static Dictionary<string, Action> commands = new Dictionary<string, Action>()
-        {          
+        {
             {"tomui", new Action(JsonToMui)},
             {"tojson", new Action(MuiToJson)},
             {"openfolder", new Action(OpenFolder)},
@@ -84,8 +84,7 @@ namespace DOM.mui_to_json
 
             foreach (string file in Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories))
             {
-                String name =  Path.GetFileName(file);
-
+                String name = Path.GetFileName(file);
 
                 if (ext.Length == 0 || file.EndsWith(ext))
                 {
@@ -100,11 +99,10 @@ namespace DOM.mui_to_json
 
             return domFiles;
         }
-        public static DomFile GetFileFromName(string name )
+        public static DomFile GetFileFromName(string name)
         {
-            string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            string path = ModBuilder.MOD_SOURCE_PATH;
 
-          
             foreach (string file in Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories))
             {
                 String getname = Path.GetFileName(file);
@@ -117,6 +115,23 @@ namespace DOM.mui_to_json
                     {
                         return dom;
                     }
+                }
+            }
+
+            return null;
+        }
+        public static string SearchFileFromName(string name)
+        {
+            string path = ModBuilder.MOD_SOURCE_PATH;
+
+            foreach (string file in Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories))
+            {
+                String getname = Path.GetFileName(file);
+
+                if (name == getname)
+                {
+                    return file;
+
                 }
             }
 

@@ -30,6 +30,7 @@ namespace DOM.mui_to_json.ModOneToBuild.files
 
                         ench.SetID("enchanted_" + helper.GetID());
                         ench.SetName(helper.GetName() + " [*]");
+                        ench.SetDropChance(0);
 
                         enchanteds.Add(ench.line);
 
@@ -45,28 +46,18 @@ namespace DOM.mui_to_json.ModOneToBuild.files
             items.lineObjects.AddRange(enchanteds);
 
 
-            List<String> methods = new List<string>() { "RngAlchemyAddRunes","RngAlchemyAddMaterial"};
-
-            foreach (DomLine unique in uniques)
+           foreach (DomLine unique in uniques)
             {
-                foreach (String luamethod in methods)
-                {
-
-                    String mat = "";
-
-                    if (luamethod.Equals("RngAlchemyAddRunes")){
-                        mat = "crafting_mat_add_runes";
-                    }
-                    if (luamethod.Equals("RngAlchemyAddMaterial"))
-                    {
-                        mat = "crafting_mat_add_material";
-                    }
+                                                    
 
                     ItemHelper helper = new ItemHelper(unique);
 
                     String result = "enchanted_" + helper.GetID();
 
-                    string recipeline = "enchanted_" + helper.GetID() + ";" + helper.GetID() +";" + mat + ";;" + 100 + ";" + result + ";" +luamethod+ ";";
+                    String luamethod = "myEnchantItem";
+
+                    // todo change 1 to 1000 (poison pots)
+                    string recipeline = "enchanted_" + helper.GetID() + ";" + helper.GetID() +";"  + ";;" + 1000 + ";" + result + ";" +luamethod+ ";";
 
                     var newline = new DomLine
                     {
@@ -74,7 +65,7 @@ namespace DOM.mui_to_json.ModOneToBuild.files
                     };
 
                     alchemy.lineObjects.Add(newline);
-                }
+                
             }
 
 

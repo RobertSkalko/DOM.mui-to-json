@@ -69,7 +69,7 @@ namespace DOM.mui_to_json.Helpers
             return GetType() == "MORPHING" || this.GetID().Contains("full");
         }
 
-        public void RemoveBoostNumStats()
+        public void ReplaceBoostNumProjectilesWithAllStats()
         {
             foreach (string key in this.line.dict.Keys.ToList())
             {
@@ -77,11 +77,11 @@ namespace DOM.mui_to_json.Helpers
                 {
                     String str = line.dict[key];
 
-                   if (str.Contains("boost_num"))
+                    if (str.Contains("boost_num"))
                     {
-                        line.dict[key] = "";
+                        line.dict[key] = "boost_all_stats";
                     }
-                }              
+                }
             }
         }
 

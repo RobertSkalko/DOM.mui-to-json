@@ -13,7 +13,6 @@ namespace DOM.mui_to_json.ModOneToBuild
 
             file.addOrOverrideEntriesFrom(adder);
 
-
             foreach (DomLine line in file.lineObjects.ToList())
             {
                 ItemHelper helper = new ItemHelper(line);
@@ -31,16 +30,16 @@ namespace DOM.mui_to_json.ModOneToBuild
                         line.dict["Item_durability"] = "-1";
                     }
                 }
-            }            
+
+            }
 
         }
         public static void AddSetLabelsToItemNames(DomFile file, DomFile sets)
-        {                       
+        {
 
             foreach (DomLine line in sets.lineObjects.ToList())
             {
                 ItemHelper helper = new ItemHelper(line);
-
 
                 for (int i = 1; i < 9; i++)
                 {
@@ -58,16 +57,16 @@ namespace DOM.mui_to_json.ModOneToBuild
 
                             String SetNameAdd = "[Set]";
 
-                            if (!item.GetName().Contains(SetNameAdd)) {
+                            if (!item.GetName().Contains(SetNameAdd))
+                            {
                                 item.SetName(item.GetName() + " " + SetNameAdd);
                             }
                         }
-                    }                    
-                    
+                    }
+
                 }
 
             }
-           
 
         }
 

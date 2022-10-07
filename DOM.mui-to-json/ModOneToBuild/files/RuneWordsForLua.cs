@@ -9,16 +9,11 @@ namespace DOM.mui_to_json.ModOneToBuild.files
     public class RuneWordsForLua
     {
 
-
         public static void Edit(DomFile file)
         {
             String lua = "function addRandomRuneWord()\n";
 
-
             int index = 0;
-
-
-
 
             int total = -1;
 
@@ -33,30 +28,24 @@ namespace DOM.mui_to_json.ModOneToBuild.files
                 }
             }
 
-
             lua += "local total = " + total + "\n";
 
             lua += "local index = Generate.RandomInt(0,total)\n";
-
 
             foreach (DomLine line in file.lineObjects.ToList())
             {
 
                 ItemHelper helper = new ItemHelper(line);
 
-
                 String id = helper.GetID();
-             
 
                 if (id.Length > 0)
                 {
 
-                    lua+= "if index == " + index + " then\n";
-
+                    lua += "if index == " + index + " then\n";
 
                     for (int i = 1; i < 6; i++)
                     {
-
 
                         String key = "set_rune_" + i;
 
@@ -64,49 +53,44 @@ namespace DOM.mui_to_json.ModOneToBuild.files
 
                         if (val != null && val.Length > 0)
                         {
-                            lua += "Generate.AddRune(\"" + val + "\")\n";                           
+                            lua += "Generate.AddRune(\"" + val + "\")\n";
                         }
 
                     }
 
-                    lua += "end\n"; 
+                    lua += "end\n";
                     index++;
 
                 }
-                
+
             }
 
             lua += "end\n";
 
-            file.createLuaFile(lua);
-           
+            ModBuilder.ReplaceInFile("item_generation.lua", "[RANDOM_RUNEWORD_FUNCTION]", lua);
+
+            //file.createLuaFile(lua);
+
             //Console.Write(lua);
 
         }
 
-
         /*
-        
-        
+
         public static void Edit(DomFile file)
         {
             String lua = "RUNE_SETS = {\n";
-
 
             foreach (DomLine line in file.lineObjects.ToList())
             {
 
                 ItemHelper helper = new ItemHelper(line);
 
-
-
-
                 String id = helper.GetID();
 
                 if (id.Length > 0)
                 {
                     String str = "['" + id + "'] = {";
-
 
                     for (int i = 1; i < 6; i++)
                     {
@@ -131,7 +115,6 @@ namespace DOM.mui_to_json.ModOneToBuild.files
             }
 
             lua += "}\n";
-
 
             file.createLuaFile(lua);
            

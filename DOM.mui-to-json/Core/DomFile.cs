@@ -21,6 +21,55 @@ namespace DOM.mui_to_json
         {
         }
 
+        public void overrideWithOtherFile(DomFile file)
+        {
+            List<DomLine> list = new List<DomLine>();
+
+            foreach (DomLine line in file.lineObjects)
+            {
+                ItemHelper h = new ItemHelper(line);
+
+                String id = h.GetID();
+
+                if (!this.containsId(id))
+                {
+
+                    DomLine copy = lineObjects[1].Copy();
+                    DomLine add = lineObjects[1].Copy();
+
+                    ItemHelper addHelp = new ItemHelper(add);
+
+                    foreach (String key in copy.dict.Keys)
+                    {
+                        add.dict[key] = line.get(key);
+
+                    }
+
+                    addHelp.SetID(h.GetID());
+
+                    if (addHelp.GetID().Length > 0)
+                    {
+                        list.Add(add);
+                    }
+                }
+
+            }
+
+            addOrOverrideEntriesFrom(list);
+
+            /*
+            foreach (DomLine line in list)
+            {
+                String lineid= new ItemHelper(line).GetID();
+
+                if (this.lineObjects.All(x=> !new ItemHelper(x).GetID().Equals(lineid))){
+                    lineObjects.Add(line);
+                }
+            }
+            */
+
+        }
+
         public bool containsId(String id)
         {
             return indexOfWithId(id) > -1;
@@ -28,11 +77,12 @@ namespace DOM.mui_to_json
         public int indexOfWithId(String id)
         {
 
-           for (int i =0; i < lineObjects.Count; i++)
+            for (int i = 0; i < lineObjects.Count; i++)
             {
                 DomLine x = lineObjects[i];
 
-                if (new  ItemHelper(x).GetID() == id) {
+                if (new ItemHelper(x).GetID().Equals(id))
+                {
 
                     return i;
 
@@ -75,21 +125,31 @@ namespace DOM.mui_to_json
 
         public void addOrOverrideEntriesFrom(DomFile adder)
         {
+            addOrOverrideEntriesFrom(adder.lineObjects);
 
-            foreach (DomLine obj in adder.lineObjects)
+        }
+        public void addOrOverrideEntriesFrom(List<DomLine> adder)
+        {
+
+            foreach (DomLine obj in adder)
             {
+                String id = new ItemHelper(obj).GetID();
 
-                int index = indexOfWithId(new ItemHelper(obj).GetID());
-
-                if (index > -1)
+                if (id.Length > 0)
                 {
-                    lineObjects[index] = obj;
-                }
-                else
-                {
-                    lineObjects.Add(obj);
-                }
 
+                    int index = indexOfWithId(id);
+
+                    if (index > -1)
+                    {
+                        lineObjects[index] = obj;
+                    }
+                    else
+                    {
+                        lineObjects.Add(obj);
+                    }
+
+                }
             }
 
         }
@@ -108,7 +168,7 @@ namespace DOM.mui_to_json
             String name = Path.GetFileName(path);
 
             string dir = ModBuilder.BUILD_PATH;
-            
+
             return dir + name;
 
         }
@@ -148,7 +208,7 @@ namespace DOM.mui_to_json
 
         public void CreateMuiOrCsvFile()
         {
-            string muipath = getMuIOrCsvPath(); 
+            string muipath = getMuIOrCsvPath();
 
             string mui = this.getMuiString();
 
@@ -232,7 +292,7 @@ namespace DOM.mui_to_json
             return Path.ChangeExtension(getWritePath(), ".mui");
         }
         public string getCsvPath()
-        {          
+        {
             return Path.ChangeExtension(getWritePath(), ".csv");
         }
         public string getJsonPath()

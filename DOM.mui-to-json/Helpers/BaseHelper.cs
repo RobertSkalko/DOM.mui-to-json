@@ -27,7 +27,19 @@ namespace DOM.mui_to_json.Helpers
 
         public void SetID(string id)
         {
-            line.dict["@head"] = id;
+            if (line.dict.ContainsKey("@HEAD"))
+            {
+                line.dict["@HEAD"]= id;
+            }
+            else if (line.dict.ContainsKey("@head"))
+            {
+                line.dict["@head"] = id;
+            }
+            else
+            {
+                line.dict["@head"] = id;
+
+            }
         }
 
         public int GetInt(string key, int fallback)
