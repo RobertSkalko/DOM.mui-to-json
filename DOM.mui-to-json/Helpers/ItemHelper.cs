@@ -134,6 +134,11 @@ namespace DOM.mui_to_json
             line.dict["generate_by_name"] = "0";
         }
 
+        public bool IsElementRecipe()
+        {
+            return GetID().Contains("create_full");
+        }
+
         public bool IsNotTotem()
         {
             return line.get("Item_lit_name").ToLower().Contains("totem") == false;

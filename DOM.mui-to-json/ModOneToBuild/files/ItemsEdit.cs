@@ -23,6 +23,9 @@ namespace DOM.mui_to_json.ModOneToBuild
                     helper.SetRequiremnt(999);
 
                 }
+
+                // i can use traders and smiths, so why disable durability?
+                /*
                 if (line.dict.ContainsKey("Item_durability"))
                 {
                     if (line.dict["Item_durability"] != "0")
@@ -30,6 +33,7 @@ namespace DOM.mui_to_json.ModOneToBuild
                         line.dict["Item_durability"] = "-1";
                     }
                 }
+                */
 
             }
 

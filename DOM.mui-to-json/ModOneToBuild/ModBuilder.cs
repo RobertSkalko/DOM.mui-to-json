@@ -50,7 +50,8 @@ namespace DOM.mui_to_json.ModOneToBuild
             //ItemsFileCSV.overrideWithOtherFile(ItemsFile);
             //ItemsFileCSV.CreateMuiOrCsvFile();
 
-            CopyToBuildPath("traders_addon.lua");
+            CopyToBuildPath("traders.lua");
+            CopyToBuildPath("version.txt");
 
             System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
             {
