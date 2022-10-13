@@ -26,7 +26,7 @@ namespace DOM.mui_to_json.ModOneToBuild
         {
 
             DomFile ItemsFile = MainClass.GetFileFromName("items.mui");
-            DomFile ItemsFileCSV = MainClass.GetFileFromName("items.mui");
+            //DomFile ItemsFileCSV = MainClass.GetFileFromName("items.mui");
             DomFile Sets = MainClass.GetFileFromName("item_sets.csv");
             DomFile RuneWordStatsFile = MainClass.GetFileFromName("rune_words.mui");
             DomFile alchemyFile = MainClass.GetFileFromName("alchemy_recipes.csv");
@@ -38,6 +38,7 @@ namespace DOM.mui_to_json.ModOneToBuild
             //EnchantedItemRecipes.edit(ItemsFile, alchemyFile);
 
             AlchemyEdit.Edit(alchemyFile);
+            EnchantedItemRecipes.edit(ItemsFile, alchemyFile);
             RuneWordsForLua.Edit(runewordSetsFile);
 
             ItemsEdit.AddSetLabelsToItemNames(ItemsFile, Sets);
