@@ -13,7 +13,7 @@ namespace DOM.mui_to_json.ModOneToBuild
 {
     public class ModBuilder
     {
-        public static string BUILD_PATH = "C:/Users/PC/Desktop/Dawn of Magic MODDING/built_mod/";
+        public static string BUILD_PATH = "C:/Users/PC/Desktop/Dawn of Magic MODDING/DOM_MOD_SOURCE/built_mod/";
         public static string MOD_SOURCE_PATH = "C:/Users/PC/Desktop/Dawn of Magic MODDING/DOM_MOD_SOURCE/src/";
 
         // runes and mats don't drop
@@ -39,7 +39,7 @@ namespace DOM.mui_to_json.ModOneToBuild
 
             AlchemyEdit.Edit(alchemyFile);
             EnchantedItemRecipes.edit(ItemsFile, alchemyFile);
-            RuneWordsForLua.Edit(runewordSetsFile);
+            LuaFileChanges.replaceAll(runewordSetsFile, ItemsFile);
 
             ItemsEdit.AddSetLabelsToItemNames(ItemsFile, Sets);
 

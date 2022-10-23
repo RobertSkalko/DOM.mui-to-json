@@ -19,7 +19,7 @@ namespace DOM.mui_to_json.ModOneToBuild
 
                 if (helper.getSubclass() == "isc_rune" || helper.getSubclass() == "isc_material")
                 {
-                    helper.SetDropChance(0);
+                    //helper.SetDropChance(0);
                     helper.SetRequiremnt(999);
 
                 }

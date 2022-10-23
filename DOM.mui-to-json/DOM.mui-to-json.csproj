@@ -60,7 +60,7 @@
     <Compile Include="ModOneToBuild\files\AlchemyEdit.cs" />
     <Compile Include="ModOneToBuild\files\EnchantedItemRecipes.cs" />
     <Compile Include="ModOneToBuild\files\RuneWordsEdit.cs" />
-    <Compile Include="ModOneToBuild\files\RuneWordsForLua.cs" />
+    <Compile Include="ModOneToBuild\files\LuaFileChanges.cs" />
     <Compile Include="ModOneToBuild\files\ItemsEdit.cs" />
     <Compile Include="ModOneToBuild\ModBuilder.cs" />
     <Compile Include="Tools\SetAllGearIndestructable.cs" />

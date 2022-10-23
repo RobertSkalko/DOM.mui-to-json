@@ -20,6 +20,7 @@ namespace DOM.mui_to_json
         {
             {"tomui", new Action(JsonToMui)},
             {"tojson", new Action(MuiToJson)},
+            {"test spells", new Action(testMaxSpells)},
             {"openfolder", new Action(OpenFolder)},
             {"filter uniques", new Action(SetupFileWithAllUniques.Create)},
             {"create epic uniques", new Action(CreateEpicVersionsOfUniques.Create)},
@@ -105,6 +106,7 @@ namespace DOM.mui_to_json
 
             foreach (string file in Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories))
             {
+
                 String getname = Path.GetFileName(file);
 
                 if (name == getname)
@@ -116,6 +118,7 @@ namespace DOM.mui_to_json
                         return dom;
                     }
                 }
+
             }
 
             return null;
@@ -182,5 +185,43 @@ namespace DOM.mui_to_json
                 Console.WriteLine("Failed, No files");
             }
         }
+        private static void testMaxSpells()
+        {
+            string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+            DomFile dom = MainClass.GetFileFromName("spells.mui");
+
+            List<string> letters = new List<string>() { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
+
+            foreach (DomLine line in dom.lineObjects)
+            {
+                foreach (string l in letters)
+                {
+                    string m2 = l + "32";
+                    string m1 = l + "1";
+
+                    if (line.dict.ContainsKey(m2))
+                    {
+                        line.dict[m1] = line.dict[m2];
+                    }
+                }
+
+                if (line.dict.ContainsKey("active_delay32"))
+                {
+                    line.dict["active_delay1"] = line.dict["active_delay32"];
+                }
+
+                if (line.dict.ContainsKey("range32"))
+                {
+                    line.dict["range1"] = line.dict["range32"];
+                }
+            }
+
+            dom.CreateMuiFile();
+
+            Console.WriteLine("done!");
+
+        }
+
     }
 }
